@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
+void back(BuildContext context, [x]) => Navigator.of(context).pop(x);
 Future<void> nav(Widget location, BuildContext context) => Navigator.push(
       context,
       PageRouteBuilder(
@@ -8,4 +9,3 @@ Future<void> nav(Widget location, BuildContext context) => Navigator.push(
         reverseTransitionDuration: Duration.zero,
       ),
     );
-back(context, [dynamic x]) => Navigator.of(context).pop(x);

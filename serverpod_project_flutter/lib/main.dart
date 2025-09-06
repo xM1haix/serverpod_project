@@ -1,36 +1,42 @@
-import 'package:flutter/material.dart';
-import 'package:serverpod_flutter/serverpod_flutter.dart';
-import 'package:serverpod_project_client/serverpod_project_client.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import 'classes/cbr.dart';
-import 'constant/colors.dart';
-import 'pages/login.dart';
-
-var client = Client('http://$localhost:8080/')
-  ..connectivityMonitor = FlutterConnectivityMonitor();
+import "package:flutter/material.dart";
+import "package:serverpod_flutter/serverpod_flutter.dart";
+import "package:serverpod_project_client/serverpod_project_client.dart";
+import "package:serverpod_project_flutter/classes/cbr.dart";
+import "package:serverpod_project_flutter/constant/colors.dart";
+import "package:serverpod_project_flutter/pages/login.dart";
+import "package:shared_preferences/shared_preferences.dart";
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  int? userid = (await SharedPreferences.getInstance()).getInt('user_id');
+  final userid = (await SharedPreferences.getInstance()).getInt("user_id");
   runApp(MyApp(userid));
 }
 
+var client = Client("http://$localhost:8080/")
+  ..connectivityMonitor = FlutterConnectivityMonitor();
+
+InputBorder border(Color color) => OutlineInputBorder(
+      borderRadius: CBR.all(10).v,
+      borderSide: BorderSide(
+        color: color,
+      ),
+    );
+
 class MyApp extends StatelessWidget {
-  final int? userid;
   const MyApp(this.userid, {super.key});
+  final int? userid;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Halo Mods',
+      title: "Halo Mods",
       theme: ThemeData(
         buttonTheme: const ButtonThemeData(
           splashColor: Colors.red,
         ),
         tooltipTheme: const TooltipThemeData(
-          height: 0,
+          constraints: BoxConstraints(),
           textStyle: TextStyle(color: white, fontSize: 10),
           decoration: BoxDecoration(
             color: transparent,
@@ -58,11 +64,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-InputBorder border(Color color) => OutlineInputBorder(
-      borderRadius: CBR.all(10).v,
-      borderSide: BorderSide(
-        color: color,
-        width: 1,
-      ),
-    );

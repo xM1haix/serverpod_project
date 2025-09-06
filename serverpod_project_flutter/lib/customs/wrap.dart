@@ -1,15 +1,14 @@
-import 'package:flutter/material.dart';
-
-import '/classes/cbr.dart';
-import '/classes/ceig.dart';
-import '/classes/wrap_helper.dart';
-import '/constant/colors.dart';
-import '/customs/cache_image.dart';
-import '/functions/nav.dart';
+import "package:flutter/material.dart";
+import "package:serverpod_project_flutter/classes/cbr.dart";
+import "package:serverpod_project_flutter/classes/ceig.dart";
+import "package:serverpod_project_flutter/classes/wrap_helper.dart";
+import "package:serverpod_project_flutter/constant/colors.dart";
+import "package:serverpod_project_flutter/customs/cache_image.dart";
+import "package:serverpod_project_flutter/functions/nav.dart";
 
 class CustomWrap extends StatelessWidget {
-  final List<WrapHelper> children;
   const CustomWrap({required this.children, super.key});
+  final List<WrapHelper> children;
 
   @override
   Widget build(BuildContext context) {
@@ -19,22 +18,22 @@ class CustomWrap extends StatelessWidget {
         alignment: WrapAlignment.spaceBetween,
         runSpacing: 50,
         spacing: 50,
-        children: children.map((e) => WrapElement(e)).toList(),
+        children: children.map(WrapElement.new).toList(),
       ),
     );
   }
 }
 
 class WrapElement extends StatefulWidget {
-  final WrapHelper e;
   const WrapElement(this.e, {super.key});
+  final WrapHelper e;
 
   @override
   State<WrapElement> createState() => _WrapElementState();
 }
 
 class _WrapElementState extends State<WrapElement> {
-  bool _hover = false;
+  var _hover = false;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -64,7 +63,6 @@ class _WrapElementState extends State<WrapElement> {
             ),
           ),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               CacheImage(
                 image: widget.e.image,

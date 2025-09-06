@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
 class MCRunningMongose extends StatefulWidget {
   const MCRunningMongose({super.key});
@@ -11,22 +11,6 @@ class _MCRunningMongoseState extends State<MCRunningMongose>
     with SingleTickerProviderStateMixin {
   double _x = 0;
   late AnimationController _mcRunning;
-
-  @override
-  void initState() {
-    super.initState();
-    _mcRunning = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 5),
-    )
-      ..addListener(() {
-        setState(() {
-          _x = _mcRunning.value;
-        });
-      })
-      ..forward()
-      ..repeat();
-  }
 
   int get running => (_x * 60).toInt() % 6;
 
@@ -43,7 +27,7 @@ class _MCRunningMongoseState extends State<MCRunningMongose>
           ),
           if (_x < 0.5)
             Image.asset(
-              'assets/animations/mc_running_$running.png',
+              "assets/animations/mc_running_$running.png",
             ),
           if (_x < 0.5)
             SizedBox(
@@ -55,5 +39,21 @@ class _MCRunningMongoseState extends State<MCRunningMongose>
         ],
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _mcRunning = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 5),
+    )
+      ..addListener(() {
+        setState(() {
+          _x = _mcRunning.value;
+        });
+      })
+      ..forward()
+      ..repeat();
   }
 }

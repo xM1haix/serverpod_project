@@ -1,15 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
-import '/classes/ctf_helper.dart';
-import '/constant/colors.dart';
+import "package:flutter/material.dart";
+import "package:flutter/services.dart";
+import "package:serverpod_project_flutter/classes/ctf_helper.dart";
+import "package:serverpod_project_flutter/constant/colors.dart";
 
 class CustomTextField extends StatelessWidget {
-  final CTFHelper x;
-  final int? maxLines;
-  final bool numeral, dot, isPassword, enabled, expands, readOnly;
-  final Widget? prefixIcon, suffixIcon;
-  final void Function(String value)? onChanged;
   const CustomTextField({
     required this.x,
     this.maxLines,
@@ -24,6 +18,17 @@ class CustomTextField extends StatelessWidget {
     this.readOnly = false,
     super.key,
   });
+  final CTFHelper x;
+  final int? maxLines;
+  final bool numeral;
+  final bool dot;
+  final bool isPassword;
+  final bool enabled;
+  final bool expands;
+  final bool readOnly;
+  final Widget? prefixIcon;
+  final Widget? suffixIcon;
+  final void Function(String value)? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +47,7 @@ class CustomTextField extends StatelessWidget {
       inputFormatters: numeral
           ? [
               FilteringTextInputFormatter.allow(
-                dot ? RegExp(r'^\d*\.?\d*$') : RegExp(r'^\d*$'),
+                dot ? RegExp(r"^\d*\.?\d*$") : RegExp(r"^\d*$"),
               ),
             ]
           : null,

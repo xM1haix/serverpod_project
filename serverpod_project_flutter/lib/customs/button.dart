@@ -1,15 +1,9 @@
-import 'package:flutter/material.dart';
-
-import '/classes/cbr.dart';
-import '/classes/ceig.dart';
-import '/constant/colors.dart';
+import "package:flutter/material.dart";
+import "package:serverpod_project_flutter/classes/cbr.dart";
+import "package:serverpod_project_flutter/classes/ceig.dart";
+import "package:serverpod_project_flutter/constant/colors.dart";
 
 class CustomButton extends StatelessWidget {
-  final void Function()? onTap, onLongPress;
-  final Widget child;
-  final Color backgroundColor, borderColor, shadowColor;
-  final double width, height, borderWidth, borderRadius;
-  final CEIG padding;
   const CustomButton({
     required this.width,
     required this.height,
@@ -24,6 +18,17 @@ class CustomButton extends StatelessWidget {
     this.onLongPress,
     super.key,
   });
+  final void Function()? onTap;
+  final void Function()? onLongPress;
+  final Widget child;
+  final Color backgroundColor;
+  final Color borderColor;
+  final Color shadowColor;
+  final double width;
+  final double height;
+  final double borderWidth;
+  final double borderRadius;
+  final CEIG padding;
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(

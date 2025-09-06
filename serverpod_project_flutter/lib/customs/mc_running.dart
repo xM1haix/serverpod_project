@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
 class MCRunning extends StatefulWidget {
   const MCRunning({super.key});
@@ -9,8 +9,26 @@ class MCRunning extends StatefulWidget {
 class _MCRunningState extends State<MCRunning>
     with SingleTickerProviderStateMixin {
   late AnimationController _mcRunning;
-  int _x = 0;
-  void _listener() => setState(() => _x = (_mcRunning.value * 6).toInt());
+  var _x = 0;
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 30,
+      width: 30,
+      child: Image.asset(
+        "assets/animations/mc_running_$_x.png",
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _mcRunning
+      ..stop()
+      ..removeListener(_listener)
+      ..dispose();
+    super.dispose();
+  }
 
   @override
   void initState() {
@@ -24,22 +42,5 @@ class _MCRunningState extends State<MCRunning>
       ..repeat();
   }
 
-  @override
-  void dispose() {
-    _mcRunning.stop();
-    _mcRunning.removeListener(_listener);
-    _mcRunning.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 30,
-      width: 30,
-      child: Image.asset(
-        'assets/animations/mc_running_$_x.png',
-      ),
-    );
-  }
+  void _listener() => setState(() => _x = (_mcRunning.value * 6).toInt());
 }

@@ -1,18 +1,18 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
+import "package:serverpod_project_flutter/constant/colors.dart";
+import "package:serverpod_project_flutter/customs/mc_running.dart";
 
-import '/constant/colors.dart';
-import '/customs/mc_running.dart';
-
-loading(context) => showDialog(
+Future<void> loading(BuildContext context) => showDialog(
       context: context,
-      builder: (BuildContext context) => const AlertDialog(
+      builder: (context) => const AlertDialog(
         backgroundColor: transparent,
         shadowColor: transparent,
         title: Center(
-            child: Text(
-          "Loading",
-          style: TextStyle(color: orange),
-        )),
+          child: Text(
+            "Loading",
+            style: TextStyle(color: orange),
+          ),
+        ),
         content: MCRunning(),
       ),
     );

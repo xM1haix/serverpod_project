@@ -1,14 +1,24 @@
-import 'dart:async';
-import 'dart:convert';
-import 'dart:developer';
+import "dart:async";
+import "dart:convert";
+import "dart:developer";
 
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:serverpod_project_flutter/classes/wrap_helper.dart';
-import 'package:serverpod_project_flutter/pages/login.dart';
+import "package:flutter/material.dart";
+import "package:http/http.dart" as http;
+import "package:serverpod_project_flutter/classes/wrap_helper.dart";
+import "package:serverpod_project_flutter/constant/colors.dart";
+import "package:serverpod_project_flutter/customs/wrap.dart";
+import "package:serverpod_project_flutter/pages/login.dart";
 
-import '/constant/colors.dart';
-import '../customs/wrap.dart';
+Future customAjax({Map<String, dynamic>? object}) async {
+  final x = await http.post(
+    Uri.parse("http://95.216.2.106:4444/"),
+  );
+  if (x.statusCode != 200) {
+    throw Exception("Connection error!");
+  }
+  final Map r = jsonDecode(x.body) as Map<String, dynamic>;
+  log({"url": "url", "object": object, "result": r}.toString());
+}
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -94,15 +104,4 @@ class _HomeState extends State<Home> {
       ),
     );
   }
-}
-
-Future customAjax({Map<String, dynamic>? object}) async {
-  final http.Response x = await http.post(
-    Uri.parse('http://95.216.2.106:4444/'),
-  );
-  if (x.statusCode != 200) {
-    throw "Connection error!";
-  }
-  final Map r = jsonDecode(x.body) as Map<String, dynamic>;
-  log({"url": 'url', "object": object, "result": r}.toString());
 }
